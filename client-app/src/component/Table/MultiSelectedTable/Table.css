@@ -1,0 +1,76 @@
+.table {
+  border-radius: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table__header-row {
+  background-color: #e1e1e1;
+  font-family: 'Avenir Heavy';
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: 1.75;
+  text-align: left;
+}
+
+.table__header-cell {
+  padding: 24px;
+  font-size: 18px;
+}
+
+.table__data-row {
+  border-bottom: 1px solid #e1e1e1;
+}
+
+.table__data-row--selected {
+  background-color: #efedfd;
+}
+
+.table__data-cell {
+  padding: 24px;
+  font-family: 'Avenir Book';
+  font-size: 16px;
+  letter-spacing: 0.1;
+  line-height: 1.75;
+}
+
+@media (min-width: 1200px) {
+  .table__header-cell {
+    font-size: 20px;
+  }
+
+  .table__data-cell {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .table__header-cell {
+    font-size: 18px;
+  }
+
+  .table__data-cell {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 991px) {
+  .table__header-cell {
+    font-size: 16px;
+  }
+
+  .table__data-cell {
+    font-size: 16px;
+  }
+}
+
+.table__data-cell input[type='checkbox'] {
+  width: 24px;
+  height: 24px;
+}
+
+input[type='checkbox']:checked + label:before {
+  background-color: purple;
+}
