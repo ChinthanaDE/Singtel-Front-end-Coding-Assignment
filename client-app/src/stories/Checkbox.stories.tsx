@@ -1,24 +1,22 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { MultiSelectCheckbox } from '../component/CheckBox';
+import CheckBox from '../component/CheckBox/CheckBox';
 
 export default {
     title: 'Components/CheckBox',
-    component: MultiSelectCheckbox,
+    component: CheckBox,
     argTypes: {
-      options: { control: 'object' },
-      backgroundColor: { control: 'color' },
-      
+      checked: { type: 'boolean' },
+      color: { control: 'color' }
     },
-  } as ComponentMeta<typeof MultiSelectCheckbox>;
+  } as ComponentMeta<typeof CheckBox>;
 
-const Template: ComponentStory<typeof MultiSelectCheckbox> = (args) => <MultiSelectCheckbox {...args} />;
+const Template: ComponentStory<typeof CheckBox> = (args) => <CheckBox {...args} />;
 
-export const MultiSelectionCheckBox = Template.bind({});
-MultiSelectionCheckBox.args = {
-  options: [
-    { value: '1', label: 'Option 1' },
-    { value: '2', label: 'Option 2' },
-    { value: '3', label: 'Option 3' },
-  ],
+export const CheckBoxColor = Template.bind({});
+CheckBoxColor.args = {
+  id: 1,
+  checked: true,
+  onChange: () => {},
 };
+
