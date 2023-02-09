@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Table.css';
+import Button from '../../Button/Button';
 
 export interface Props {
   headers: { title: string; key: string }[];
@@ -13,15 +14,18 @@ const TableHeader: React.FC<Props> = ({ headers, onSort }) => {
       <tr className="table__header-row">
         {headers.map(header => (
           <th key={header.key} className="table__header-cell">
-            {header.title}
+            <div style={{ flex:1 ,flexDirection:'row'}}>
             {onSort && (
-              <button className="sort-icon" onClick={() => onSort(header.key)}>
-                <div className="sort-icon__container">
-                  <div className="sort-icon__arrow sort-icon__arrow--up"></div>
-                  <div className="sort-icon__arrow sort-icon__arrow--down"></div>
-                </div>
-              </button>
+              <Button
+                sortColumn={header.key}
+                sortOrder="natural"
+                header={header}
+                onSort={onSort}
+              />
             )}
+            </div>
+            <div className="header__title">{header.title}</div>
+           
           </th>
         ))}
       </tr>
@@ -47,7 +51,7 @@ const TableBody: React.FC<Props> = ({ data }) => {
 
 export const Table: React.FC<Props> = ({ headers, data, onSort }) => {
   const [sortColumn, setSortColumn] = useState<string | null>(null);
-  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc' | 'natural'>('natural');
 
   const handleSort = (column: string) => {
     if (sortColumn === column) {
@@ -65,10 +69,10 @@ export const Table: React.FC<Props> = ({ headers, data, onSort }) => {
   const sortedData =
     sortOrder === 'asc'
       ? [...data].sort((a, b) =>
-          sortColumn ? (a[sortColumn] < b[sortColumn] ? -1 : 1) : 0
+          sortColumn ? (String(a[sortColumn]) < String(b[sortColumn]) ? -1 : 1) : 0
         )
       : [...data].sort((a, b) =>
-          sortColumn ? (a[sortColumn] > b[sortColumn] ? -1 : 1) : 0
+          sortColumn ? (String(a[sortColumn]) > String(b[sortColumn]) ? -1 : 1) : 0
         );
 
   return (
