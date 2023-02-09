@@ -31,7 +31,7 @@ const onSort = (key: string) => {
 };
 
 export default {
-  title: 'Components/Table',
+  title: 'Page/SortingTable',
   component: Table,
   argTypes: {},
 } as ComponentMeta<typeof Table>;

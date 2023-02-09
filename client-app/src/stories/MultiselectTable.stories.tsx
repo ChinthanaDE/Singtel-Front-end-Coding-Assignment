@@ -15,7 +15,7 @@ const columns = [
 ];
 
 export default {
-    title: 'Components/Table',
+    title: 'Page/CheckBoxTable',
     component: Table,
     argTypes: {
         isCheckboxEnabled: { type: 'boolean' }

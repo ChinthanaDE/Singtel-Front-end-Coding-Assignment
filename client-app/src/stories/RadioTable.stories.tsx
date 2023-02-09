@@ -27,7 +27,7 @@ const columns = [
 ];
 
 export default {
-  title: 'Components/Table',
+  title: 'Page/RadioTable',
   component: Table,
   argTypes: {
     isSingleSelectEnabled: { type: 'boolean' },
