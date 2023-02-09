@@ -1,24 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { action } from '@storybook/addon-actions';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Button from '../component/Button/Button';
 
 export default {
-    title: 'Components/Button',
-    component: Button,
-    argTypes: {
-        sortColumn: { type: 'string' },
-        sortOrder: { type: 'string' },
-        header: { type: 'object' },
-        onSort: { type: 'function' }
-    }
-} as unknown as ComponentMeta<typeof Button>;
+  title: 'Components/Button',
+  component: Button,
+  argTypes: {
+    sortColumn: { type: 'string' },
+    header: { type: 'object' },
+    onSort: { type: 'function' }
+  }
+};
 
-const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
+const Template: ComponentStory<typeof Button> = (args) => {
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc' | 'natural'>('natural');
+
+  return (
+    <Button
+      {...args}
+      onSort={key => {
+        args.onSort(key);
+        if (sortOrder === 'natural') {
+          setSortOrder('asc');
+        } else if (sortOrder === 'asc') {
+          setSortOrder('desc');
+        } else {
+          setSortOrder('natural');
+        }
+      }}
+    />
+  );
+};
 
 export const SortButton = Template.bind({});
 SortButton.args = {
   sortColumn: 'key',
-  sortOrder: 'natural',
   header: { key: 'key' },
-  onSort: (key: string) => {}
+  onSort: action('Sort column')
 };
