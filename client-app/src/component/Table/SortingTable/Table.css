@@ -1,7 +1,7 @@
 .table {
   border-radius: 16px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+  overflow: 'scrol';
   width: 100%;
   border-collapse: collapse;
 }
@@ -15,9 +15,19 @@
   text-align: left;
 }
 
+.header__title{
+  padding: 0 2px 0 2px;
+}
+
+.table__header-with_icon{
+  display: flex;
+  flex-direction: row-reverse;
+}
+
 .table__header-cell {
   padding: 24px;
   font-size: 18px;
+  
 }
 
 .table__data-row {
